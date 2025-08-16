@@ -33,7 +33,7 @@ const AthleteDetail = () => {
       <div className="flex flex-col items-center text-center">
         {/* Imagen cuadrada */}
         <img
-          src={athlete.image}
+          src={athlete.picture}
           alt={athlete.name}
           className="w-60 h-60 object-cover rounded-lg border-4 border-red-600 shadow-md mb-6"
         />
@@ -65,10 +65,17 @@ const AthleteDetail = () => {
           </div>
         )}
 
+       <div> 
+       { /* Botón editar */ }
+
+        <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}>
+          ✏️ Editar
+        </button>
         {/* Botón de volver */}
         <button onClick={() => navigate(-1)} className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
           ⬅ Volver
         </button>
+        </div>
       </div>
     </div>
   );
