@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getAthleteById } from "../services/athletesService";
+import { deleteAthlete } from "../services/athletesService";
 
 const AthleteDetail = () => {
   const { id } = useParams();
@@ -65,15 +66,19 @@ const AthleteDetail = () => {
           </div>
         )}
 
-       <div> 
+       <div className="flex  items-center gap-4"> 
        { /* Botón editar */ }
 
-        <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}>
-          ✏️ Editar
+        <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}  title="Editar atleta" className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+          ✏️ 
         </button>
         {/* Botón de volver */}
-        <button onClick={() => navigate(-1)} className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
-          ⬅ Volver
+        <button onClick={() => navigate(-1)} title="Volver" className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+          ⬅ 
+        </button>
+        {/* Botón de eliminar */}
+        <button onClick={() => {deleteAthlete(id),  navigate(-1)}} title="Eliminar atleta" className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+          🗑️ 
         </button>
         </div>
       </div>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { getAthletes } from "../services/athletesService";
 import AthleteCard from "../components/AthleteCard";
+import { useNavigate } from "react-router-dom";
 
 const AthletesList = () => {
   const [athletes, setAthletes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +48,11 @@ const AthletesList = () => {
           ))}
         </div>
       )}
+      <div>
+        <button onClick={() => navigate("/athletes/new")} className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+          ➕ Add Athlete
+        </button>
+      </div>
     </div>
   );
 };
