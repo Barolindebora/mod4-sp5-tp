@@ -21,7 +21,7 @@ const AthleteCard = ({ athlete }) => {
       {/* Botón de detalle */}
       <button
         onClick={() => navigate(`/athletes-trampolin/${athlete.id}`)}
-        className="bg-red-600 text-white py-3 px-6 rounded-xl shadow-lg hover:bg-black transition"
+        className="bg-red-600 text-white py-3 px-6 rounded-xl shadow-lg hover:bg-blue-900 transition"
       >
         View details
       </button>

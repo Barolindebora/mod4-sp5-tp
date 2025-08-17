@@ -57,3 +57,15 @@ export const deleteAthlete = async (id) => {
     throw error;
   }
 };
+
+// Obtener atletas por disciplina// no lo soporta comprobado 
+export const getAthletesByDiscipline = async (discipline) => {
+  try {
+    // si MockAPI soporta query params
+    const res = await axios.get(`${API_URL}?discipline=${discipline}`);
+    return res.data;
+  } catch (error) {
+    console.error("Error al obtener atletas por disciplina", error);
+    throw error;
+  }
+};

@@ -72,6 +72,9 @@ const handleDelete = () => {
         <p className="text-xl text-blue-700 font-medium mb-4">
           {athlete.discipline}
         </p>
+        <p className="text-xl text-blue-700 font-medium mb-4">Aparatos: {athlete.apparatus}
+
+        </p>
 
         {/* Descripción */}
         <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mb-6">

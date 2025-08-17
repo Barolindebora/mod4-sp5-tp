@@ -55,11 +55,17 @@ const AthleteForm = () => {
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
-        <input
-          {...register("discipline", { required: true })}
-          placeholder="Disciplina"
+       {/* Disciplina restringida */}
+        <select
+          {...register("discipline", { required: "La disciplina es obligatoria" })}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
+        >
+          <option value="Trampolin">Trampolin</option>
+          <option value="Artística">Artística</option>
+          <option value="Parkour">Parkour</option>
+        </select>
+     
+
         
         <input
           {...register("apparatus", { required: true })}
@@ -68,7 +74,7 @@ const AthleteForm = () => {
         />
         
         <input
-          {...register("picture", { required: true })}
+          {...register("picture")}
           placeholder="URL de la foto"
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />

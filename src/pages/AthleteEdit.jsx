@@ -51,16 +51,17 @@ const AthleteEdit = () => {
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Nombre */}
-        <div>
-          <label className="block text-gray-700 font-semibold">Nombre</label>
-          <input
-            type="text"
-            {...register("name", { required: "El nombre es obligatorio" })}
-            className="w-full p-2 border rounded-lg"
-          />
-          {errors.name && <p className="text-red-600">{errors.name.message}</p>}
-        </div>
+       
+       {/* Nombre (solo lectura) */}
+      <div>
+        <label className="block text-gray-700 font-semibold">Nombre</label>
+        <input
+         type="text"
+           {...register("name")}
+            className="w-full p-2 border rounded-lg bg-gray-100 cursor-not-allowed"
+            readOnly
+        />
+      </div>
 
         {/* País */}
         <div>
@@ -105,11 +106,14 @@ const AthleteEdit = () => {
         {/* Disciplina */}
         <div>
           <label className="block text-gray-700 font-semibold">Disciplina</label>
-          <input
-            type="text"
-            {...register("discipline")}
-            className="w-full p-2 border rounded-lg"
-          />
+          <select
+          {...register("discipline", { required: "La disciplina es obligatoria" })}
+          className="w-full p-2 border rounded-lg"
+          >
+            <option value="Trampolin">Trampolín</option>
+            <option value="Artística">Artística</option>
+            <option value="Parkour">Parkour</option>
+          </select>
         </div>
 
         {/* Aparato */}

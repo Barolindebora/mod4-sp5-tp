@@ -3,12 +3,12 @@ import { getAthletes } from "../services/athletesService";
 import AthleteCard from "../components/AthleteCard";
 import { useNavigate } from "react-router-dom";
 
-const AthletesList = () => {
+const AthletesTrampoline = () => {
   const [athletes, setAthletes] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAthletes();
@@ -34,7 +34,7 @@ const AthletesList = () => {
   return (
     <div className="bg-white min-h-screen p-6">
       <h1 className="text-3xl font-bold text-center text-red-600 mb-8">
-        Athletes List
+        Gimnastas de Trampolin
       </h1>
 
       {athletes.length === 0 ? (
@@ -48,13 +48,9 @@ const AthletesList = () => {
           ))}
         </div>
       )}
-      <div>
-        <button onClick={() => navigate("/athletes/new")} className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
-          ➕ Add Athlete
-        </button>
-      </div>
+    
     </div>
   );
 };
 
-export default AthletesList;
+export default AthletesTrampoline;
