@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getAthleteById } from "../services/athletesService";
 import { deleteAthlete } from "../services/athletesService";
+import Swal from "sweetalert2";
 
 const AthleteDetail = () => {
   const { id } = useParams();
@@ -29,6 +30,31 @@ const AthleteDetail = () => {
     return <p className="text-center text-red-600 text-lg">{error}</p>;
   if (!athlete) return navigate("/not-found");
 
+const handleDelete = () => {
+  Swal.fire({
+    title: `¿Eliminar a ${athlete.name}?`,
+    text: "No podrás revertir esta acción",
+    imageUrl: athlete.picture,   // 👈 mostramos la foto del atleta
+    imageWidth: 200,             // ancho de la imagen
+    imageHeight: 200,            // alto de la imagen
+    imageAlt: `Foto de ${athlete.name}`, // texto alternativo
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Volver",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteAthlete(id);
+      Swal.fire(
+        "Eliminado!",
+        "El atleta fue eliminado correctamente.",
+        "success"
+      );
+      navigate(-1);
+    }
+  });
+};
   return (
     <div className="max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-2xl border-2 border-blue-700 mt-10">
       <div className="flex flex-col items-center text-center">
@@ -72,13 +98,18 @@ const AthleteDetail = () => {
         <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}  title="Editar atleta" className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
           ✏️ 
         </button>
-        {/* Botón de volver */}
+       
+        {/* Botón de eliminar */}
+       <button
+            onClick={handleDelete}
+            title="Eliminar atleta"
+            className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
+          >
+            🗑️
+          </button>
+         {/* Botón de volver */}
         <button onClick={() => navigate(-1)} title="Volver" className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
           ⬅ 
-        </button>
-        {/* Botón de eliminar */}
-        <button onClick={() => {deleteAthlete(id),  navigate(-1)}} title="Eliminar atleta" className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
-          🗑️ 
         </button>
         </div>
       </div>
