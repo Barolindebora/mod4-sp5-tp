@@ -61,8 +61,8 @@ const AthleteForm = () => {
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         >
           <option value="Trampolin">Trampolin</option>
-          <option value="Artística">Artística</option>
-          <option value="Parkour">Parkour</option>
+          <option value="Artística">Artística Femenina</option>
+          <option value="ArtisticaMasc">Artística Mazculina </option>
         </select>
      
 

@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 
 import Artistica from "../pages/Artistica";
-import Parkour from "../pages/Parkour";
+import Parkour from "../pages/ArtisticaMasc";
 import AthleteDetail from "../pages/AthleteDetail";
 import NotFound from "../pages/NotFound";
 import AthleteEdit from "../pages/AthleteEdit";
