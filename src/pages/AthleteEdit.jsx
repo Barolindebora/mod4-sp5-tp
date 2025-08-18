@@ -166,7 +166,7 @@ const AthleteEdit = () => {
           </button>
           <button
             type="submit"
-            className="bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-800"
+            className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700"
           >
             Guardar cambios
           </button>

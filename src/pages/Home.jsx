@@ -38,6 +38,15 @@ const Home = () => {
          Gimnasia Artística Masculina
         </button>
       </div>
+        {/* Botón para agregar un atleta */}
+            <button
+              onClick={() => navigate("/athletes/new")}
+              className="mt-2 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 
+                         text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
+            >
+              ➕ Add Athlete
+            </button>
+
     </div>
   );
 };

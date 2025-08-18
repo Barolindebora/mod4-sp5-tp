@@ -7,14 +7,7 @@ const Footer = () => {
 
   return (
     <div className="p-4 flex flex-col items-center gap-4">
-      {/* Botón */}
-      <button
-        onClick={() => navigate("/athletes/new")}
-        className="mt-2 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 
-                   text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
-      >
-        ➕ Add Athlete
-      </button>
+    
 
       {/* Corazones con líneas */}
       <div className="flex items-center justify-center gap-3">
