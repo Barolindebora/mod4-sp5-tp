@@ -111,8 +111,8 @@ const AthleteEdit = () => {
           className="w-full p-2 border rounded-lg"
           >
             <option value="Trampolin">Trampolín</option>
-            <option value="Artística">Artística Femenina </option>
-            <option value="Parkour">Artística Masculina</option>
+            <option value="Artística Femenina">Artística Femenina </option>
+            <option value="Artistica Masculina">Artística Masculina</option>
           </select>
         </div>
 
