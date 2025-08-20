@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createAthlete } from "../services/athletesService";
+import{useLanguage} from "../context/LanguageContext"
 
 const AthleteForm = () => {
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm();
+  const { t } = useLanguage();
 
   const onSubmit = (data) => {
     // Convertir "medals" a número si es necesario
@@ -22,7 +24,7 @@ const AthleteForm = () => {
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-xl shadow-lg border-2 border-red-500">
-      <h2 className="text-2xl font-bold text-center text-red-600 mb-6">Crear Atleta</h2>
+      <h2 className="text-2xl font-bold text-center text-red-600 mb-6">{t.crateAthlete}</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         
         <input

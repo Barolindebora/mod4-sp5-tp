@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { getAthleteById } from "../services/athletesService";
 import { deleteAthlete } from "../services/athletesService";
 import Swal from "sweetalert2";
+import{useLanguage} from "../context/LanguageContext"
 
 const AthleteDetail = () => {
   const { id } = useParams();
@@ -10,6 +11,7 @@ const AthleteDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   useEffect(() => {
     getAthleteById(id)
@@ -32,8 +34,8 @@ const AthleteDetail = () => {
 
 const handleDelete = () => {
   Swal.fire({
-    title: `¿Eliminar a ${athlete.name}?`,
-    text: "No podrás revertir esta acción",
+    title: `${t.askConfirm} ${athlete.name}?`,
+    text: t.deleteWarning,
     imageUrl: athlete.picture,   // 👈 mostramos la foto del atleta
     imageWidth: 200,             // ancho de la imagen
     imageHeight: 200,            // alto de la imagen
@@ -41,15 +43,15 @@ const handleDelete = () => {
     showCancelButton: true,
     confirmButtonColor: "#d33",
     cancelButtonColor: "#3085d6",
-    confirmButtonText: "Sí, eliminar",
-    cancelButtonText: "Volver",
+    confirmButtonText: t.confirmButton,
+    cancelButtonText: t.cancelButton,
   }).then((result) => {
     if (result.isConfirmed) {
       deleteAthlete(id);
       Swal.fire(
-        "Eliminado!",
-        "El atleta fue eliminado correctamente.",
-        "success"
+        t.deleted,
+        t.deleteMessage,
+        t.success,
       );
       navigate(-1);
     }
@@ -85,10 +87,10 @@ const handleDelete = () => {
         {athlete.medals && (
           <div className="bg-yellow-100 border border-yellow-400 rounded-xl p-4 mb-6 shadow-md">
             <h2 className="text-xl font-bold text-yellow-700 mb-2">
-              🏅 Medallero
+              🏅 {t.medallero}
             </h2>
             <ul className="flex justify-center gap-6 text-lg">
-              <li> 🏅Total de medallas {athlete.medals || 0} </li>
+              <li> 🏅{t.totalMedallas} {athlete.medals || 0} </li>
               {/*<li>🥈 {athlete.medals.silver || 0} Plata</li>
               <li>🥉 {athlete.medals.bronze || 0} Bronce</li>*/}
             </ul>
