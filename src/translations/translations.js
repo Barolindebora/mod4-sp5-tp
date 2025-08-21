@@ -22,6 +22,14 @@ const translations = {
     askConfirm: "¿Estás seguro de que quieres eliminar a",
     deleteWarning: "No podrás revertir esta acción",
     crateAthlete: "Agregar un nuevo atleta",
+    loader: "Cargando atletas...",
+    trampolineGymnastics: "Gimnasia de Trampolín",
+    athletesNotFound: "No se encontraron atletas.",
+    details: "Ver detalles",
+    apparatus: "Aparatos",
+    tituloEditar: "Editar atleta",
+    tituloEliminar: "Eliminar atleta",
+    tituloVolver: "Volver a la lista de atletas"
   },
   en: {
     chooseDiscipline: "Choose the discipline to continue",
@@ -42,6 +50,14 @@ const translations = {
     askConfirm: "Are you sure you want to delete",
     deleteWarning: "You won't be able to revert this action",
     crateAthlete: "Add a new Athlete",
+    loader: "Loading athletes...",
+    trampolineGymnastics: "Trampoline Gymnastics",
+    athletesNotFound: "No athletes found.",
+    details: "View details",
+    apparatus: "Apparatus",
+    tituloEditar: "Edit athlete",
+    tituloEliminar: "Delete athlete",
+    tituloVolver: "Back to athlete list"
 
   },
 };

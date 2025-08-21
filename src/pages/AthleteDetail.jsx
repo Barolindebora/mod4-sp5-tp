@@ -74,7 +74,7 @@ const handleDelete = () => {
         <p className="text-xl text-blue-700 font-medium mb-4">
           {athlete.discipline}
         </p>
-        <p className="text-xl text-blue-700 font-medium mb-4">Aparatos: {athlete.apparatus}
+        <p className="text-xl text-blue-700 font-medium mb-4">{t.apparatus}: {athlete.apparatus}
 
         </p>
 
@@ -100,20 +100,20 @@ const handleDelete = () => {
        <div className="flex  items-center gap-4"> 
        { /* Botón editar */ }
 
-        <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}  title="Editar atleta" className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+        <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}  title={t.tituloEditar} className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
           ✏️ 
         </button>
        
         {/* Botón de eliminar */}
        <button
             onClick={handleDelete}
-            title="Eliminar atleta"
+            title={t.tituloEliminar}
             className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
           >
             🗑️
           </button>
          {/* Botón de volver */}
-        <button onClick={() => navigate(-1)} title="Volver" className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+        <button onClick={() => navigate(-1)} title={t.tituloVolver} className="mt-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
           ⬅ 
         </button>
         </div>

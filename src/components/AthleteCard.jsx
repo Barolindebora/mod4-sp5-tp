@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 const AthleteCard = ({ athlete }) => {
   const navigate = useNavigate(); // 👈 ahora sí tenemos navigate
+  const { t } = useLanguage();
 
   return (
     <div className="bg-white border-2 border-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 flex flex-col items-center text-center">
@@ -23,7 +25,7 @@ const AthleteCard = ({ athlete }) => {
         onClick={() => navigate(`/athletes-trampolin/${athlete.id}`)}
         className="bg-red-600 text-white py-3 px-6 rounded-xl shadow-lg hover:bg-blue-900 transition"
       >
-        View details
+        {t.details}
       </button>
     </div>
   );
