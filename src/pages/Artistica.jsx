@@ -1,8 +1,10 @@
 import React from 'react'
+import { useLanguage } from "../context/LanguageContext";
 
 const Artistica = () => {
+  const { t } = useLanguage();
   return (
-    <div>Gimnasia Artistica Femenina</div>
+    <div>{t.artisticFemale}</div>
   )
 }
 

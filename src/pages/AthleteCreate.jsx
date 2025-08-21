@@ -29,31 +29,31 @@ const AthleteForm = () => {
         
         <input
           {...register("name", { required: true })}
-          placeholder="Nombre"
+          placeholder={t.athleteName}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <input
           {...register("country", { required: true })}
-          placeholder="País"
+          placeholder={t.athleteCountry}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <input
           {...register("club", { required: true })}
-          placeholder="Club"
+          placeholder={t.athleteClub}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <input
           {...register("category", { required: true })}
-          placeholder="Categoría"
+          placeholder={t.athleteCategory}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <input
           {...register("level", { required: true })}
-          placeholder="Nivel"
+          placeholder={t.athleteLevel}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
@@ -62,34 +62,34 @@ const AthleteForm = () => {
           {...register("discipline", { required: "La disciplina es obligatoria" })}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         >
-          <option value="Trampolín">Trampolín</option>
-          <option value="Artística Femenina">Artística Femenina</option>
-          <option value="Artística Masculina">Artística Masculina</option>
+          <option value={t.trampoline}>{t.trampoline}</option>
+          <option value={t.artisticFemale}>{t.artisticFemale}</option>
+          <option value={t.artisticMale}>{t.artisticMale}</option>
         </select>
      
 
         
         <input
           {...register("apparatus", { required: true })}
-          placeholder="Aparato"
+          placeholder={t.apparatus}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <input
           {...register("picture")}
-          placeholder="URL de la foto"
+          placeholder={t.picture}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <textarea
           {...register("description", { required: true })}
-          placeholder="Descripción"
+          placeholder={t.description}
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         
         <input
           {...register("medals", { required: true, valueAsNumber: true })}
-          placeholder="Medallas"
+          placeholder={t.medals}
           type="number"
           className="border border-blue-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
@@ -98,14 +98,14 @@ const AthleteForm = () => {
           type="submit"
           className="bg-red-600 text-white font-bold py-2 rounded hover:bg-red-700 transition"
         >
-          Crear Atleta
+          {t.createAthleteSubmit}
         </button>
       <button
             type="button"
             onClick={() => navigate(-1)}
             className="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500"
           >
-            Cancelar
+            {t.cancel}
           </button>
       </form>
     </div>

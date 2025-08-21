@@ -29,7 +29,26 @@ const translations = {
     apparatus: "Aparatos",
     tituloEditar: "Editar atleta",
     tituloEliminar: "Eliminar atleta",
-    tituloVolver: "Volver a la lista de atletas"
+    tituloVolver: "Volver a la lista de atletas",
+    athleteName: "Nombre",
+    athleteCountry: "País",
+    athleteClub: "Club",
+    athleteCategory: "Categoría",
+    athleteLevel: "Nivel",
+    trampoline: "Trampolín",
+    artisticFemale: "Gimnasia Artística Femenina",
+    artisticMale: "Gimnasia Artística Masculina",
+    athleteApparatus: "Aparato",
+    picture: "URL de la foto",
+    description: "Descripción",
+    medals: "Medallas",
+    picture: "URL de la foto",
+    createAthleteSubmit: "Crear Atleta",
+    cancel: "Cancelar",
+    discipline: "Disciplina",
+    saveChanges: "Guardar Cambios"
+
+
   },
   en: {
     chooseDiscipline: "Choose the discipline to continue",
@@ -57,7 +76,23 @@ const translations = {
     apparatus: "Apparatus",
     tituloEditar: "Edit athlete",
     tituloEliminar: "Delete athlete",
-    tituloVolver: "Back to athlete list"
+    tituloVolver: "Back to athlete list",
+    athleteName: "Name",
+    athleteCountry: "Country",
+    athleteClub: "Club",
+    athleteCategory: "Category",
+    athleteLevel: "Level",
+    trampoline: "Trampoline",
+    artisticFemale: "Artistic Female Gymnastics",
+    artisticMale: "Artistic Male Gymnastics",
+    apparatus: "Apparatus",
+    description: "Description",
+    medals: "Medals",
+    createAthleteSubmit: "Create Athlete",
+    cancel: "Cancel",
+    picture: "Picture URL",
+    discipline: "Discipline",
+    saveChanges: "Save Changes",
 
   },
 };
