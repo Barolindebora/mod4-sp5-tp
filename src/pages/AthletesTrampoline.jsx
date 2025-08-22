@@ -1,31 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 import { getAthletes } from "../services/athletesService";
 import AthleteCard from "../components/AthleteCard";
 import { useNavigate } from "react-router-dom";
-import {useLanguage} from "../context/LanguageContext";
-
-
+import { useLanguage } from "../context/LanguageContext";
 
 const AthletesTrampoline = () => {
-  const {t}=useLanguage();
+  const { t } = useLanguage();
   const [athletes, setAthletes] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAthletes();
-        setAthletes(data);
+
+        if (!data || data.length === 0) {
+          // si no hay atletas, redirige a NotFound
+          navigate("*", { replace: true });
+        } else {
+          setAthletes(data);
+        }
+
       } catch (error) {
         console.error("Error fetching athletes:", error);
+        // si hay error en la API, también va al NotFound
+        navigate("*", { replace: true });
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return (
@@ -41,18 +48,11 @@ const AthletesTrampoline = () => {
         {t.trampolineGymnastics}
       </h1>
 
-      {athletes.length === 0 ? (
-        <p className="text-center text-blue-700 font-medium">
-          {t.athletesNotFound}
-        </p>
-      ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {athletes.map((athlete) => (
-            <AthleteCard key={athlete.id} athlete={athlete} />
-          ))}
-        </div>
-      )}
-    
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {athletes.map((athlete) => (
+          <AthleteCard key={athlete.id} athlete={athlete} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -22,6 +22,7 @@ const AppRouter = () => {
         <Route path="/parkour" element={<Parkour />} />
         <Route path="/athletes/:id/edit" element={<AthleteEdit />} />
         <Route path="/athletes/new" element={<AthleteCreate />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
 
       {/* Ruta para errores */}

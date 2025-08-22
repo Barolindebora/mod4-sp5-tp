@@ -13,24 +13,33 @@ const AthleteDetail = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
-  useEffect(() => {
+ useEffect(() => {
     getAthleteById(id)
       .then((data) => {
-        setAthlete(data);
+        if (data) {
+          setAthlete(data);
+        } else {
+          // si no hay datos -> ir al NotFound
+          navigate("*", { replace: true });
+        }
       })
       .catch(() => {
-        setError("Error loading athlete details.");
+        // si falla la API -> ir al NotFound
+        navigate("*", { replace: true });
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [id]);
+  }, [id, navigate]);
+
+  if (loading) return <p>Cargando...</p>;
+
 
   if (loading)
     return <p className="text-center text-blue-700 text-lg">Loading...</p>;
   if (error)
     return <p className="text-center text-red-600 text-lg">{error}</p>;
-  if (!athlete) return navigate("/not-found");
+  if (!athlete) return navigate("*");
 
 const handleDelete = () => {
   Swal.fire({
@@ -80,7 +89,7 @@ const handleDelete = () => {
 
         {/* Descripción */}
         <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mb-6">
-          {athlete.description}
+          {athlete.club}
         </p>
 
         {/* Medallero si existe */}

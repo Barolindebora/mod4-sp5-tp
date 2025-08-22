@@ -46,8 +46,15 @@ const translations = {
     createAthleteSubmit: "Crear Atleta",
     cancel: "Cancelar",
     discipline: "Disciplina",
-    saveChanges: "Guardar Cambios"
-
+    saveChanges: "Guardar Cambios",
+      errors: {
+      required: "Este campo es obligatorio",
+      minName: "El nombre debe tener al menos 3 caracteres",
+      maxName: "El nombre no puede superar los 50 caracteres",
+    },
+    notFound: "Oops... Página no encontrada 🥲",
+    notFoundMsj: "Parece que esta ruta no existe. Volvé al inicio y seguí explorando a los atletas olímpicos. 🏅",
+    goHome: "Ir a Inicio"
 
   },
   en: {
@@ -93,6 +100,14 @@ const translations = {
     picture: "Picture URL",
     discipline: "Discipline",
     saveChanges: "Save Changes",
+    errors: {
+      required: "This field is required",
+      minName: "Name must be at least 3 characters",
+      maxName: "Name cannot exceed 50 characters",
+    },
+    notFound: "Oops... Page not found 🥲",
+    notFoundMsj: "It seems that this route does not exist. Go back to the home page and keep exploring Olympic athletes. 🏅",
+    goHome: "Go Home"
 
   },
 };
