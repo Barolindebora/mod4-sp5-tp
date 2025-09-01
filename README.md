@@ -60,6 +60,8 @@ Correr en modo desarrollo:
 npm run dev
 
 
+Rutas API consumida: 
+
 Abrir en el navegador:
 
 http://localhost:5173
@@ -71,3 +73,11 @@ Diplomatura Universitaria en Diseño Web- Nodo Tecnológico Catamarca - UNCA
 Proyecto creado como parte del Modulo 4 - Sprint 5 - React + Vite + Tailwind.
 
 Desarrollado por Debora Barolin 💻.
+GET /athlete/?discipline=tiro&gender=female
+? es para agregar un parametro
+parámetro
+clave=valor
+& para agregar un paramertro
+como [USUARIO] quiero [ACCION] para [PROPOSITO]7
+
+

@@ -50,7 +50,7 @@ const AthletesTrampoline = () => {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {athletes.map((athlete) => (
-          <AthleteCard key={athlete.id} athlete={athlete} />
+          <AthleteCard key={athlete._id} athlete={athlete} />
         ))}
       </div>
     </div>

@@ -17,7 +17,7 @@ const AppRouter = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/athletes-trampolin" element={<AthletesTrampoline />} />
-        <Route path="/athletes-trampolin/:id" element={<AthleteDetail />} />
+        <Route path={`/athletes-trampolin/:id`} element={<AthleteDetail />} />
         <Route path="/artistica" element={<Artistica />} />
         <Route path="/parkour" element={<Parkour />} />
         <Route path="/athletes/:id/edit" element={<AthleteEdit />} />

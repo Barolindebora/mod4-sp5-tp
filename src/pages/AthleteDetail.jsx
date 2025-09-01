@@ -6,13 +6,13 @@ import Swal from "sweetalert2";
 import{useLanguage} from "../context/LanguageContext"
 
 const AthleteDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams(); 
   const [athlete, setAthlete] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { t } = useLanguage();
-
+console.log('id =', id);
  useEffect(() => {
     getAthleteById(id)
       .then((data) => {
@@ -21,11 +21,13 @@ const AthleteDetail = () => {
         } else {
           // si no hay datos -> ir al NotFound
           navigate("*", { replace: true });
+          console.log("aca falla linea 24")
         }
       })
       .catch(() => {
         // si falla la API -> ir al NotFound
         navigate("*", { replace: true });
+        console.log("aca falla linea 30")
       })
       .finally(() => {
         setLoading(false);
@@ -99,9 +101,9 @@ const handleDelete = () => {
               🏅 {t.medallero}
             </h2>
             <ul className="flex justify-center gap-6 text-lg">
-              <li> 🏅{t.totalMedallas} {athlete.medals || 0} </li>
-              {/*<li>🥈 {athlete.medals.silver || 0} Plata</li>
-              <li>🥉 {athlete.medals.bronze || 0} Bronce</li>*/}
+              <li> 🏅{athlete.medals.gold || 0} Oro</li>
+              <li>🥈 {athlete.medals.silver || 0} Plata</li>
+              <li>🥉 {athlete.medals.bronze || 0} Bronce</li>
             </ul>
           </div>
         )}
@@ -109,7 +111,7 @@ const handleDelete = () => {
        <div className="flex  items-center gap-4"> 
        { /* Botón editar */ }
 
-        <button onClick={() => navigate(`/athletes/${athlete.id}/edit`)}  title={t.tituloEditar} className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
+        <button onClick={() => navigate(`/athletes/${athlete._id}/edit`)}  title={t.tituloEditar} className="mt-4 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300">
           ✏️ 
         </button>
        

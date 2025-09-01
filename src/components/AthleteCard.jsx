@@ -22,7 +22,7 @@ const AthleteCard = ({ athlete }) => {
 
       {/* Botón de detalle */}
       <button
-        onClick={() => navigate(`/athletes-trampolin/${athlete.id}`)}
+        onClick={() => navigate(`/athletes-trampolin/${athlete._id}`)}
         className="bg-red-600 text-white py-3 px-6 rounded-xl shadow-lg hover:bg-blue-900 transition"
       >
         {t.details}
