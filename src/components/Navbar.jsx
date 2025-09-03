@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
-
+import { useAuth } from "../context/AuthContext"; // 👈 Importamos Auth
 
 const Navbar = () => {
   const { language, t, toggleLanguage } = useLanguage();
+  const { user, logout } = useAuth(); // 👈 accedemos a user y logout
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // limpia token + user del context/localStorage
+    navigate("/login"); // redirige al login después de logout
+  };
 
   return (
     <nav className="shadow-md font-sans">
@@ -15,9 +22,33 @@ const Navbar = () => {
         </span>
 
         <div className="flex items-center gap-4">
-          <button className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full hover:bg-blue-200 transition">
-            {t.login}
-          </button>
+          {user ? (
+            <>
+              {/* Link a Mi Perfil */}
+              <Link
+                to="/mi-profile"
+                className="bg-green-100 text-green-800 px-3 py-1 rounded-full hover:bg-green-200 transition"
+              >
+                Mi Perfil
+              </Link>
+
+              {/* Botón Logout */}
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            // Botón de Login si NO hay usuario
+            <Link
+              to="/login"
+              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full hover:bg-blue-200 transition"
+            >
+              {t.login}
+            </Link>
+          )}
 
           {/* Selector de idioma */}
           <select

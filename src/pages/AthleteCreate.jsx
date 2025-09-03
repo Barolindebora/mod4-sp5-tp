@@ -14,7 +14,7 @@ const AthleteForm = () => {
     const newAthlete = {
       ...data,
       medals: Number(data.medals),
-      id: Date.now().toString(), // Generar un ID único
+    
     };
 
     createAthlete(newAthlete); // Llamada a la función que crea el atleta

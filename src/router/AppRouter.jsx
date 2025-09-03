@@ -9,6 +9,9 @@ import AthleteEdit from "../pages/AthleteEdit";
 import AthleteCreate from "../pages/AthleteCreate";
 import MainLayout from "../components/MainLayout";
 import AthletesTrampoline from "../pages/AthletesTrampoline";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import MyProfile from "../pages/MyProfile";
 
 const AppRouter = () => {
   return (
@@ -22,6 +25,9 @@ const AppRouter = () => {
         <Route path="/parkour" element={<Parkour />} />
         <Route path="/athletes/:id/edit" element={<AthleteEdit />} />
         <Route path="/athletes/new" element={<AthleteCreate />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/mi-profile" element={<MyProfile />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 
