@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import { getAthleteById, updateAthlete } from "../services/athletesService";
@@ -8,10 +8,10 @@ const AthleteEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [athlete, setAthlete] = useState(null);
 
   const { t } = useLanguage();
-  // Inicializo React Hook Form
+
+  // React Hook Form
   const {
     register,
     handleSubmit,
@@ -23,8 +23,11 @@ const AthleteEdit = () => {
   useEffect(() => {
     getAthleteById(id)
       .then((data) => {
-        setAthlete(data);
-        reset(data); // 👈 precarga los valores en el formulario
+        // Aseguro que medals tenga estructura de objeto
+        if (!data.medals) {
+          data.medals = { gold: 0, silver: 0, bronze: 0 };
+        }
+        reset(data); 
       })
       .catch(() => {
         console.error("Error al cargar el atleta");
@@ -37,8 +40,18 @@ const AthleteEdit = () => {
   // Función para actualizar
   const onSubmit = async (formData) => {
     try {
-      await updateAthlete(id, formData);
-      navigate(-1); // Vuelve al detalle después de guardar
+      // Aseguro que medals sea objeto con números
+      const updatedAthlete = {
+        ...formData,
+        medals: {
+          oro: Number(formData.medals?.gold || 0),
+          plata: Number(formData.medals?.silver || 0),
+          bronce: Number(formData.medals?.bronze || 0),
+        },
+      };
+
+      await updateAthlete(id, updatedAthlete);
+      navigate(-1); 
     } catch (error) {
       console.error("Error al actualizar atleta:", error);
     }
@@ -54,16 +67,16 @@ const AthleteEdit = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
        
-       {/* Nombre (solo lectura) */}
-      <div>
-        <label className="block text-gray-700 font-semibold">{t.athleteName}</label>
-        <input
-         type="text"
-           {...register("name")}
+        {/* Nombre (solo lectura) */}
+        <div>
+          <label className="block text-gray-700 font-semibold">{t.athleteName}</label>
+          <input
+            type="text"
+            {...register("name")}
             className="w-full p-2 border rounded-lg bg-gray-100 cursor-not-allowed"
             readOnly
-        />
-      </div>
+          />
+        </div>
 
         {/* País */}
         <div>
@@ -109,12 +122,12 @@ const AthleteEdit = () => {
         <div>
           <label className="block text-gray-700 font-semibold">{t.discipline}</label>
           <select
-          {...register("discipline", { required: "La disciplina es obligatoria" })}
-          className="w-full p-2 border rounded-lg"
+            {...register("discipline", { required: "La disciplina es obligatoria" })}
+            className="w-full p-2 border rounded-lg"
           >
             <option value={t.trampoline}>{t.trampoline}</option>
-          <option value={t.artisticFemale}>{t.artisticFemale}</option>
-          <option value={t.artisticMale}>{t.artisticMale}</option>
+            <option value={t.artisticFemale}>{t.artisticFemale}</option>
+            <option value={t.artisticMale}>{t.artisticMale}</option>
           </select>
         </div>
 
@@ -147,14 +160,38 @@ const AthleteEdit = () => {
           />
         </div>
 
-        {/* Medallas */}
+        {/* Medallas por tipo */}
         <div>
           <label className="block text-gray-700 font-semibold">{t.medals}</label>
-          <input
-            type="number"
-            {...register("medals")}
-            className="w-full p-2 border rounded-lg"
-          />
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block text-yellow-600">🥇 Oro</label>
+              <input
+                type="number"
+                {...register("medals.gold")}
+                className="w-full p-2 border rounded-lg"
+                min="0"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-600">🥈 Plata</label>
+              <input
+                type="number"
+                {...register("medals.silver")}
+                className="w-full p-2 border rounded-lg"
+                min="0"
+              />
+            </div>
+            <div>
+              <label className="block text-amber-700">🥉 Bronce</label>
+              <input
+                type="number"
+                {...register("medals.bronze")}
+                className="w-full p-2 border rounded-lg"
+                min="0"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Botones */}
@@ -164,7 +201,7 @@ const AthleteEdit = () => {
             onClick={() => navigate(-1)}
             className="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500"
           >
-           {t.cancel}
+            {t.cancel}
           </button>
           <button
             type="submit"

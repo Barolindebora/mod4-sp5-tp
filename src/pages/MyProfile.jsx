@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react"; 
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import { deleteAthlete } from "../services/athletesService";
+import Swal from "sweetalert2";
 
 const MyProfile = () => {
   const { user, token } = useAuth();
   const [perfil, setPerfil] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPerfil = async () => {
@@ -25,6 +28,34 @@ const MyProfile = () => {
     if (user) fetchPerfil();
   }, [user, token]);
 
+  // 🗑️ Función para eliminar atleta con SweetAlert
+  const handleDelete = async () => {
+    if (!perfil?._id) return;
+
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Tu perfil de atleta será eliminado y no podrás recuperarlo.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteAthlete(perfil._id);
+        await Swal.fire("Eliminado", "Tu perfil ha sido eliminado correctamente.", "success");
+        setPerfil(null);
+        navigate("/");
+      } catch (error) {
+        Swal.fire("Error", "Hubo un problema al eliminar el perfil.", "error");
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md text-center">
       {/* Saludo */}
@@ -43,16 +74,25 @@ const MyProfile = () => {
           <p><strong>Disciplina:</strong> {perfil.discipline}</p>
           <p><strong>Categoría:</strong> {perfil.category}</p>
           <p><strong>Nivel:</strong> {perfil.level}</p>
-          {/* Botón para editar */}
-          <Link
-            to={`/athletes/${perfil._id}/edit`}
-            className="mt-4 inline-block bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
-          >
-            Editar mi perfil
-          </Link>
+
+          {/* Botones */}
+          <div className="flex justify-center gap-4 mt-4">
+            <Link
+              to={`/athletes/${perfil._id}/edit`}
+              className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
+            >
+              Editar mi perfil
+            </Link>
+
+            <button
+              onClick={handleDelete}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+            >
+              Eliminar perfil
+            </button>
+          </div>
         </div>
       ) : (
-        // Si no tiene perfil, mostrar botón de crear
         <Link
           to="/athletes/new"
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
