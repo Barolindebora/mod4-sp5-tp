@@ -7,13 +7,19 @@ import Swal from "sweetalert2";
 const MyProfile = () => {
   const { user, token } = useAuth();
   const [perfil, setPerfil] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const API_URL = "https://mod4-backend-final.onrender.com/api";
 
   useEffect(() => {
     const fetchPerfil = async () => {
-      if (!user) return;
+      if (!user) {
+        setLoading(false);
+        return;
+      }
+
+      console.log("🔎 USER en MyProfile:", user);
 
       try {
         let url = "";
@@ -23,7 +29,10 @@ const MyProfile = () => {
           url = `${API_URL}/trainers/me`;
         }
 
-        if (!url) return;
+        if (!url) {
+          setLoading(false);
+          return;
+        }
 
         const res = await axios.get(url, {
           headers: {
@@ -34,15 +43,17 @@ const MyProfile = () => {
 
         setPerfil(res.data);
       } catch (error) {
-        console.error("Error cargando perfil:", error);
-        setPerfil(null); // si no tiene perfil creado
+        console.error("❌ Error cargando perfil:", error);
+        setPerfil(null);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPerfil();
   }, [user, token]);
 
-  // 🗑️ Función para eliminar perfil (dinámica)
+  // 🗑️ Eliminar perfil
   const handleDelete = async () => {
     if (!perfil?._id) return;
 
@@ -57,26 +68,50 @@ const MyProfile = () => {
       cancelButtonText: "Cancelar",
     });
 
-    if (result.isConfirmed) {
-      try {
-        const url =
-          user.role === "atleta"
-            ? `${API_URL}/athletes/${perfil._id}`
-            : `${API_URL}/trainers/${perfil._id}`;
+    if (!result.isConfirmed) return;
 
-        await axios.delete(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+    try {
+      const url =
+        user.role === "atleta"
+          ? `${API_URL}/athletes/${perfil._id}`
+          : `${API_URL}/trainers/${perfil._id}`;
 
-        await Swal.fire("Eliminado", "Tu perfil ha sido eliminado correctamente.", "success");
-        setPerfil(null);
-        navigate("/");
-      } catch (error) {
-        Swal.fire("Error", "Hubo un problema al eliminar el perfil.", "error");
-        console.error(error);
-      }
+      await axios.delete(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      await Swal.fire("Eliminado", "Tu perfil ha sido eliminado correctamente.", "success");
+      setPerfil(null);
+      navigate("/");
+    } catch (error) {
+      Swal.fire("Error", "Hubo un problema al eliminar el perfil.", "error");
+      console.error(error);
     }
   };
+
+  // ⏳ Mientras carga → Spinner
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  // 🚪 Si no hay usuario logueado
+  if (!user) {
+    return (
+      <div className="text-center mt-10">
+        <p className="text-gray-600">Necesitás iniciar sesión para ver tu perfil.</p>
+        <Link
+          to="/login"
+          className="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Ir a Login
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md text-center">
@@ -86,18 +121,17 @@ const MyProfile = () => {
       </h1>
 
       <p className="text-gray-600 mb-6">
-        {user?.role === "atleta" &&
+        {user.role === "atleta" &&
           "Desde aquí podés crear y administrar tu perfil de atleta."}
-        {user?.role === "entrenador" &&
+        {user.role === "entrenador" &&
           "Desde aquí podés crear y administrar tu perfil de entrenador."}
-        {user?.role === "admin" &&
+        {user.role === "admin" &&
           "Sos administrador, no tenés perfil propio pero podés gestionar todo."}
       </p>
 
       {/* Si el usuario ya tiene perfil */}
       {perfil ? (
         <div className="bg-gray-100 p-4 rounded-lg mb-4">
-          {/* Datos de Atleta */}
           {user.role === "atleta" && (
             <>
               <p><strong>Nombre:</strong> {perfil.name}</p>
@@ -107,7 +141,6 @@ const MyProfile = () => {
             </>
           )}
 
-          {/* Datos de Entrenador */}
           {user.role === "entrenador" && (
             <>
               <p><strong>Nombre:</strong> {perfil.name}</p>
@@ -117,7 +150,6 @@ const MyProfile = () => {
             </>
           )}
 
-          {/* Botones */}
           <div className="flex justify-center gap-4 mt-4">
             <Link
               to={
@@ -139,7 +171,6 @@ const MyProfile = () => {
           </div>
         </div>
       ) : (
-        // Si no tiene perfil creado
         <>
           {user.role === "atleta" && (
             <Link

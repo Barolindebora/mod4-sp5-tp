@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const { token } = useAuth();
   const API_URL = "https://mod4-backend-final.onrender.com/api/users"; // ajustar según tu backend
+    const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -76,6 +78,9 @@ const AdminUser = () => {
           ))}
         </tbody>
       </table>
+      <button onClick={() => navigate(-1)} className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        Volver
+      </button>
     </div>
   );
 };

@@ -18,6 +18,10 @@ mail:
   ## Atleta: 
   Ingresa como atleta y genera y administra su propio perfil. Solo el puede hacerlo. 
 
+  atleta ya creado: 
+  email: mesi@messi.com
+  password mesi123
+
 
   ## Entrenador: 
   Ingresa como entrenador y genera y administra su propio perfil. Solo el puede hacerlo. 
