@@ -28,33 +28,20 @@ const Home = () => {
           onClick={() => navigate("/athletes-trampolin")}
           className="bg-blue-700 text-white py-3 px-6 rounded-2xl shadow-lg hover:bg-blue-800 transition font-semibold"
         >
-          {t.trampoline}
+          {t.trampolinePress}
         </button>
 
         <button
-          onClick={() => navigate("/artistica")}
+          onClick={() => navigate("/trainer")}
           className="bg-red-600 text-white py-3 px-6 rounded-2xl shadow-lg hover:bg-red-700 transition font-semibold"
         >
-          {t.artisticFemale}
+          {t.artisticFemalePress}
         </button>
 
-        <button
-          onClick={() => navigate("/parkour")}
-          className="bg-gray-900 text-white py-3 px-6 rounded-2xl shadow-lg hover:bg-black transition font-semibold"
-        >
-          {t.artisticMale}
-        </button>
+     
       </div>
 
-      {/* Botón Add Athlete */}
-      <button
-        onClick={() => navigate("/athletes/new")}
-        className="flex items-center gap-2 mt-4 bg-gradient-to-r from-blue-700 to-blue-900 
-                   hover:from-blue-800 hover:to-blue-950 text-white px-6 py-3 rounded-2xl 
-                   shadow-md hover:shadow-lg transition-all duration-300 font-semibold"
-      >
-        <FaPlus /> {t.addAthlete}
-      </button>
+     
     </div>
   );
 };

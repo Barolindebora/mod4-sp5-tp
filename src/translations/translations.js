@@ -4,9 +4,9 @@ const translations = {
   
 
   es: {
-    chooseDiscipline: "Elegí la disciplina para continuar",
-    trampoline: "Gimnasia de Trampolín",
-    artisticFemale: "Gimnasia Artística Femenina",
+    chooseDiscipline: "Querés conocernos?",
+    trampolinePress: "Nuestros atletas",
+    artisticFemalePress: "Nuestros entrenadores",
     artisticMale: "Gimnasia Artística Masculina",
     addAthlete: "Agregar Atleta",
      projectTitle: "Proyecto Olímpico",
@@ -58,9 +58,9 @@ const translations = {
 
   },
   en: {
-    chooseDiscipline: "Choose the discipline to continue",
-    trampoline: "Trampoline Gymnastics",
-    artisticFemale: "Women's Artistic Gymnastics",
+    chooseDiscipline: "Want to know about us?",
+    trampolinePress: "Our Athletes",
+    artisticFemalePress: "Our Coaches",
     artisticMale: "Men's Artistic Gymnastics",
     addAthlete: "Add Athlete",
      projectTitle: "Olympic Project",

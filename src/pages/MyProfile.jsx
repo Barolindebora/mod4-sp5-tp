@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
-import { deleteAthlete } from "../services/athletesService";
 import Swal from "sweetalert2";
 
 const MyProfile = () => {
@@ -10,31 +9,46 @@ const MyProfile = () => {
   const [perfil, setPerfil] = useState(null);
   const navigate = useNavigate();
 
+  const API_URL = "https://mod4-backend-final.onrender.com/api";
+
   useEffect(() => {
     const fetchPerfil = async () => {
+      if (!user) return;
+
       try {
-        const res = await axios.get("https://mod4-backend-final.onrender.com/api/athletes/me", {
+        let url = "";
+        if (user.role === "atleta") {
+          url = `${API_URL}/athletes/me`;
+        } else if (user.role === "entrenador") {
+          url = `${API_URL}/trainers/me`;
+        }
+
+        if (!url) return;
+
+        const res = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
+
         setPerfil(res.data);
       } catch (error) {
         console.error("Error cargando perfil:", error);
+        setPerfil(null); // si no tiene perfil creado
       }
     };
 
-    if (user) fetchPerfil();
+    fetchPerfil();
   }, [user, token]);
 
-  // 🗑️ Función para eliminar atleta con SweetAlert
+  // 🗑️ Función para eliminar perfil (dinámica)
   const handleDelete = async () => {
     if (!perfil?._id) return;
 
     const result = await Swal.fire({
       title: "¿Estás seguro?",
-      text: "Tu perfil de atleta será eliminado y no podrás recuperarlo.",
+      text: "Tu perfil será eliminado y no podrás recuperarlo.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -45,7 +59,15 @@ const MyProfile = () => {
 
     if (result.isConfirmed) {
       try {
-        await deleteAthlete(perfil._id);
+        const url =
+          user.role === "atleta"
+            ? `${API_URL}/athletes/${perfil._id}`
+            : `${API_URL}/trainers/${perfil._id}`;
+
+        await axios.delete(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
         await Swal.fire("Eliminado", "Tu perfil ha sido eliminado correctamente.", "success");
         setPerfil(null);
         navigate("/");
@@ -64,21 +86,45 @@ const MyProfile = () => {
       </h1>
 
       <p className="text-gray-600 mb-6">
-        Desde aquí podés crear y administrar tu perfil de atleta.
+        {user?.role === "atleta" &&
+          "Desde aquí podés crear y administrar tu perfil de atleta."}
+        {user?.role === "entrenador" &&
+          "Desde aquí podés crear y administrar tu perfil de entrenador."}
+        {user?.role === "admin" &&
+          "Sos administrador, no tenés perfil propio pero podés gestionar todo."}
       </p>
 
       {/* Si el usuario ya tiene perfil */}
       {perfil ? (
         <div className="bg-gray-100 p-4 rounded-lg mb-4">
-          <p><strong>Nombre:</strong> {perfil.name}</p>
-          <p><strong>Disciplina:</strong> {perfil.discipline}</p>
-          <p><strong>Categoría:</strong> {perfil.category}</p>
-          <p><strong>Nivel:</strong> {perfil.level}</p>
+          {/* Datos de Atleta */}
+          {user.role === "atleta" && (
+            <>
+              <p><strong>Nombre:</strong> {perfil.name}</p>
+              <p><strong>Disciplina:</strong> {perfil.discipline}</p>
+              <p><strong>Categoría:</strong> {perfil.category}</p>
+              <p><strong>Nivel:</strong> {perfil.level}</p>
+            </>
+          )}
+
+          {/* Datos de Entrenador */}
+          {user.role === "entrenador" && (
+            <>
+              <p><strong>Nombre:</strong> {perfil.name}</p>
+              <p><strong>Especialidad:</strong> {perfil.especialidad}</p>
+              <p><strong>Club:</strong> {perfil.club}</p>
+              <p><strong>Experiencia:</strong> {perfil.experiencia} años</p>
+            </>
+          )}
 
           {/* Botones */}
           <div className="flex justify-center gap-4 mt-4">
             <Link
-              to={`/athletes/${perfil._id}/edit`}
+              to={
+                user.role === "atleta"
+                  ? `/athletes/${perfil._id}/edit`
+                  : `/trainers/${perfil._id}/edit`
+              }
               className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
             >
               Editar mi perfil
@@ -93,12 +139,25 @@ const MyProfile = () => {
           </div>
         </div>
       ) : (
-        <Link
-          to="/athletes/new"
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-        >
-          Crear mi perfil de atleta
-        </Link>
+        // Si no tiene perfil creado
+        <>
+          {user.role === "atleta" && (
+            <Link
+              to="/athletes/new"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              Crear mi perfil de atleta
+            </Link>
+          )}
+          {user.role === "entrenador" && (
+            <Link
+              to="/trainer/new"
+              className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
+            >
+              Crear mi perfil de entrenador
+            </Link>
+          )}
+        </>
       )}
     </div>
   );

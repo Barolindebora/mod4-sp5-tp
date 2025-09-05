@@ -5,15 +5,18 @@ import './index.css'
 import AppRouter from './router/AppRouter'
 import { LanguageProvider } from './context/LanguageContext'
 import { AuthProvider } from './context/AuthContext'
+import { TrainerProvider } from './context/TrainerContext'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <LanguageProvider>
-          <AppRouter />
-        </LanguageProvider>
+        <TrainerProvider>
+          <LanguageProvider>
+            <AppRouter />
+          </LanguageProvider>
+        </TrainerProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
