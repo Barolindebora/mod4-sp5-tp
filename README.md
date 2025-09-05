@@ -4,6 +4,39 @@
 https://club-gimnasia-cat.netlify.app/
 
 
+Usuarios segun roles: 
+
+## Administrador: puede eliminar usuario.. 
+
+te paso el usuario y contraseña por si queres probar: 
+
+mail:   
+ "email": "administrador1@gmail.com",
+  "password": "123admin"
+
+
+  ## Atleta: 
+  Ingresa como atleta y genera y administra su propio perfil. Solo el puede hacerlo. 
+
+
+  ## Entrenador: 
+  Ingresa como entrenador y genera y administra su propio perfil. Solo el puede hacerlo. 
+
+  ## Visitante: 
+  Solo puede leer la página. 
+
+Documentación: 
+
+
+
+
+
+
+
+
+
+
+
 🏅 Proyecto Olímpico - Atletas de Trampolín
 
 Aplicación desarrollada con React + Vite + TailwindCSS para la gestión de atletas de gimnasia (rama trampolín y otras disciplinas).

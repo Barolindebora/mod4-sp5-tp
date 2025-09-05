@@ -32,6 +32,16 @@ const Navbar = () => {
                 Mi Perfil
               </Link>
 
+              {/* 👇 Link solo visible para administradores */}
+              {user.role === "admin" && (
+                <Link
+                  to="/admin/users"
+                  className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full hover:bg-purple-200 transition"
+                >
+                  Gestión Usuarios
+                </Link>
+              )}
+
               {/* Botón Logout */}
               <button
                 onClick={handleLogout}

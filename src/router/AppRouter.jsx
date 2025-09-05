@@ -13,6 +13,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MyProfile from "../pages/MyProfile";
 import TrainerCreate from "../pages/TrainerCreate";
+import AdminUser from "../pages/AdminUser";
+import AdminRoute from "../components/AdminRoute";
 
 
 
@@ -32,10 +34,17 @@ const AppRouter = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/mi-profile" element={<MyProfile />} />
         <Route path="/trainer/new" element={<TrainerCreate />} />
-        
-       
         <Route path="*" element={<NotFound />} />
-      </Route>
+       </Route>
+        {/* Ruta para admin - gestión de usuarios - protegida*/}
+        <Route
+          path="/admin/users"
+          element={
+            <AdminRoute>
+              <AdminUser />
+            </AdminRoute>
+          }
+        />
 
       {/* Ruta para errores */}
       <Route path="/not-found" element={<NotFound />} />
