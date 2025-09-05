@@ -62,7 +62,7 @@ const Login = () => {
           {/* Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Contraseña
+              {t.password}
             </label>
             <input
               type="password"
@@ -85,12 +85,12 @@ const Login = () => {
 
         {/* 👉 Link al registro */}
         <p className="text-center text-sm text-gray-600 mt-6">
-          ¿No tenés usuario?{" "}
+          {t.notUser}{" "}
           <Link
             to="/register"
             className="text-blue-600 hover:underline font-medium"
           >
-            Registrate ahora
+            {t.registerNow}
           </Link>
         </p>
       </div>

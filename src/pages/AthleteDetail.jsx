@@ -101,9 +101,9 @@ const handleDelete = () => {
               🏅 {t.medallero}
             </h2>
             <ul className="flex justify-center gap-6 text-lg">
-              <li> 🏅{athlete.medals.gold || 0} Oro</li>
-              <li>🥈 {athlete.medals.silver || 0} Plata</li>
-              <li>🥉 {athlete.medals.bronze || 0} Bronce</li>
+              <li> 🏅{athlete.medals.gold || 0} {t.gold}</li>
+              <li>🥈 {athlete.medals.silver || 0} {t.silver}</li>
+              <li>🥉 {athlete.medals.bronze || 0} {t.bronze}</li>
             </ul>
           </div>
         )}

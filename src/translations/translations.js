@@ -54,7 +54,51 @@ const translations = {
     },
     notFound: "Oops... Página no encontrada 🥲",
     notFoundMsj: "Parece que esta ruta no existe. Volvé al inicio y seguí explorando a los atletas olímpicos. 🏅",
-    goHome: "Ir a Inicio"
+    //navbar
+    miPerfil: "Mi Perfil",
+    userAdmin: "Gestión Usuarios",
+    goHome: "Ir a Inicio", 
+    athleteRole: "Rol",
+    actions: "Acciones", delete: "Eliminar",
+    addTrainer: "Agregar Entrenador",
+  createTrainerSubmit: "Crear Entrenador",
+  tituloEditarEntrenador: "Editar entrenador",
+  tituloEliminarEntrenador: "Eliminar entrenador",
+  tituloVolverEntrenador: "Volver a la lista de entrenadores",
+  trainerName: "Nombre del entrenador",
+  trainerCountry: "País",
+  trainerClub: "Club",
+  trainerEspecialidad: "Especialidad",
+  trainerExperiencia: "Experiencia (años)",
+
+  // Admin de usuarios
+  users: "Usuarios",
+  deleteUser: "Eliminar usuario",
+  deletedUser: "Usuario eliminado correctamente",
+  deleteUserMessage: "El usuario fue eliminado correctamente.",
+  askConfirmUser: "¿Estás seguro de que quieres eliminar al usuario",
+  deleteUserWarning: "No podrás revertir esta acción",
+    goBack: "Volver",
+    gold: "Oro",
+    silver: "Plata",
+    bronze: "Bronce",
+    notUser: "¿No tenés usuario?",
+    registerNow: "Registrate ahora",
+    password: "Contraseña",
+    category: "Categoría",
+    level: "Nivel",
+    hello: "Hola",
+    mensajeAtleta: "Desde aquí podés crear y administrar tu perfil de atleta.",
+    mensajeEntrenador: "Desde aquí podés crear y administrar tu perfil de entrenador.",
+    mensajeAdministrador: "Sos administrador, no tenés perfil propio pero podés gestionar todo.",
+  editProfile: "Editar mi perfil",
+  deleteProfile: "Eliminar mi perfil",
+  createProfileAthlete: "Crear mi perfil de atleta",
+  createProfileTrainer: "Crear mi perfil de entrenador",
+  confirmTitle: "¿Estás seguro?",
+  confirmText: "Tu perfil será eliminado y no podrás recuperarlo.",
+  confirmButton: "Sí, eliminar",
+  cancelButton: "Cancelar",
 
   },
   en: {
@@ -107,10 +151,60 @@ const translations = {
     },
     notFound: "Oops... Page not found 🥲",
     notFoundMsj: "It seems that this route does not exist. Go back to the home page and keep exploring Olympic athletes. 🏅",
-    goHome: "Go Home"
+    goHome: "Go Home", // Coaches
+  
+  //navbar
+  miPerfil: "My Profile",
+  userAdmin: "User Management",
 
-  },
-};
+    addTrainer: "Add Coach",
+  createTrainerSubmit: "Create Coach",
+  tituloEditarEntrenador: "Edit coach",
+  tituloEliminarEntrenador: "Delete coach",
+  tituloVolverEntrenador: "Back to coach list",
+  trainerName: "Coach Name",
+  trainerCountry: "Country",
+  trainerClub: "Club",
+  trainerEspecialidad: "Specialty",
+  trainerExperiencia: "Experience (years)",
+
+  // Admin users
+  users: "Users",
+  deleteUser: "Delete user",
+  deletedUser: "User deleted successfully",
+  deleteUserMessage: "The user was deleted successfully.",
+  askConfirmUser: "Are you sure you want to delete the user",
+  deleteUserWarning: "You won't be able to revert this action",
+  athleteRole: "Role",
+  actions: "Actions",
+  delete: "Delete",
+  goBack: "Go Back",
+  gold: "Gold",
+  silver: "Silver",
+  bronze: "Bronze",
+  notUser: "Not a user?", 
+  registerNow: "Register now", 
+  password: "Password",
+  category: "Category",
+  level: "Level",
+  hello: "Hello",
+  mensajeAtleta: "Here you can create and manage your athlete profile.",
+  mensajeEntrenador: "Here you can create and manage your coach profile.",
+
+  mensajeAdministrador: "You are an administrator, you do not have your own profile but you can manage everything.",
+editProfile: "Edit my profile",
+  deleteProfile: "Delete my profile",
+  createProfileAthlete: "Create my athlete profile",
+  createProfileTrainer: "Create my coach profile",
+  confirmTitle: "Are you sure?",
+  confirmText: "Your profile will be deleted and you will not be able to recover it.",
+  confirmButton: "Yes, delete",
+  cancelButton: "Cancel",
+
+},
+  
+  }
+
 
 
 export default translations;

@@ -3,10 +3,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const { token } = useAuth();
+  const { t } = useLanguage();
   const API_URL = "https://mod4-backend-final.onrender.com/api/users"; // ajustar según tu backend
     const navigate = useNavigate();
 
@@ -50,14 +52,14 @@ const AdminUser = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Gestión de Usuarios</h1>
+      <h1 className="text-2xl font-bold mb-4">{t.userAdmin}</h1>
       <table className="w-full table-auto border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border px-4 py-2">Nombre</th>
-            <th className="border px-4 py-2">Email</th>
-            <th className="border px-4 py-2">Rol</th>
-            <th className="border px-4 py-2">Acciones</th>
+            <th className="border px-4 py-2">{t.athleteName}</th>
+            <th className="border px-4 py-2">Mail</th>
+            <th className="border px-4 py-2">{t.athleteRole}</th>
+            <th className="border px-4 py-2">{t.actions}</th>
           </tr>
         </thead>
         <tbody>
@@ -71,7 +73,7 @@ const AdminUser = () => {
                   onClick={() => handleDelete(u._id)}
                   className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
                 >
-                  Eliminar
+                 {t.delete}
                 </button>
               </td>
             </tr>
@@ -79,7 +81,7 @@ const AdminUser = () => {
         </tbody>
       </table>
       <button onClick={() => navigate(-1)} className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-        Volver
+       {t.goBack}
       </button>
     </div>
   );

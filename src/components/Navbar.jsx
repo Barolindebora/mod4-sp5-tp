@@ -29,7 +29,7 @@ const Navbar = () => {
                 to="/mi-profile"
                 className="bg-green-100 text-green-800 px-3 py-1 rounded-full hover:bg-green-200 transition"
               >
-                Mi Perfil
+                {t.miPerfil}
               </Link>
 
               {/* 👇 Link solo visible para administradores */}
@@ -38,7 +38,7 @@ const Navbar = () => {
                   to="/admin/users"
                   className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full hover:bg-purple-200 transition"
                 >
-                  Gestión Usuarios
+                  {t.userAdmin}
                 </Link>
               )}
 
